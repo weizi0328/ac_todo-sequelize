@@ -7,8 +7,6 @@ const routes = require('./routes')
 
 const usePassport = require('./config/passport')
 
-// const { authenticator } = require('./middleware/auth')
-
 const app = express()
 const PORT = 3000
 
@@ -28,9 +26,9 @@ app.use(methodOverride('_method'))
 
 usePassport(app)
 
-// app.use((req, res, next) => {
-//   return next()
-// })
+app.use((req, res, next) => {
+  return next()
+})
 
 app.use(routes)
 
