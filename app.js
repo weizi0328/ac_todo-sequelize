@@ -19,15 +19,15 @@ app.use(session({
   saveUninitialized: true
 }))
 
-// app.use('/todos', authenticator, todos) 
-
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 usePassport(app)
 
 app.use((req, res, next) => {
-  return next()
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
 })
 
 app.use(routes)
