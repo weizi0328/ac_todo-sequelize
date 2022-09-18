@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const Todo = require('../../models/todo')
+const db = require('../../models')
+const Todo = db.Todo
 
 // 
 router.get('/new', (req, res) => {
@@ -16,6 +17,7 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+
 router.get('/:id', (req, res) => {
   const id = req.params.id
   return Todo.findByPk(id)
@@ -23,6 +25,7 @@ router.get('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   return Todo.findByPk(id)
@@ -30,6 +33,7 @@ router.get('/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 
 router.put('/:id', (req, res) => {
   const id = req.params.id
   const { name, isDone } = req.body
@@ -43,6 +47,7 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 
 router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Todo.findByPk(id)

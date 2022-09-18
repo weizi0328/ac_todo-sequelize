@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const Todo = require('../../models/todo')
+const db = require('../../models')
+const Todo = db.Todo
 
 
 router.get('/', (req, res) => {
@@ -9,8 +10,8 @@ router.get('/', (req, res) => {
     raw: true,
     nest: true
   })
-    .then(todos => res.render('index', { todos: todos }))
-    .catch(error => res.status(422).json(error))
+    .then(todos => res.render('index', { todos }))
+    .catch(error => console.log(error))
 })
 
 

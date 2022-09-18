@@ -1,8 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-const User = require('../../models/user')
+const passport = require('passport')
+const bcrypt = require('bcryptjs')
 
+const db = require('../../models')
+const User = db.User
+
+// usePassport(app)
 
 router.get('/login', (req, res) => {
   res.render('login')
@@ -44,9 +49,13 @@ router.post('/register', (req, res) => {
   })
 })
 
+// router.get('/logout', (req, res) => {
+//   req.logout()
+//   res.redirect('/users/login')
+// })
+
 router.get('/logout', (req, res) => {
-  req.logout()
-  res.redirect('/users/login')
+  res.send('logout')
 })
 
 
