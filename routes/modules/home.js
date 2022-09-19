@@ -5,7 +5,6 @@ const db = require('../../models')
 const Todo = db.Todo
 const User = db.User
 
-
 router.get('/', (req, res) => {
   User.findByPk(req.userid)
     .then((user) => {
